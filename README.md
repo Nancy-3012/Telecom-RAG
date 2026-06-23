@@ -107,8 +107,8 @@ python RAG-pipeline/retriever.py     # test retrieval against the index
 - [x] Chunking
 - [x] Embeddings + FAISS index
 - [x] Retriever
-- [ ] LLM setup
-- [ ] Full generation pipeline (retrieval + LLM)
+- [x] LLM setup
+- [x] Full generation pipeline (retrieval + LLM)
 - [ ] FastAPI backend
 - [ ] Streamlit demo UI
 - [ ] RAGAS evaluation against KPI targets
