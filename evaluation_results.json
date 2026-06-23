@@ -1,0 +1,13 @@
+{
+  "metrics": {
+    "Recall": 100.0,
+    "Top-k Accuracy": 100.0,
+    "MRR": 100.0,
+    "Faithfulness": 94.8
+  },
+  "methodology_note": "Recall/MRR/Top-k scored 100% due to verbatim query matching against indexed Q&A chunks. Faithfulness (94.8%) is the more representative metric \u2014 measures answer grounding in retrieved context, independent of query phrasing. Evaluated on 30 TeleQnA questions using Mistral-7B-Instruct-v0.2 with BAAI/bge-large-en embeddings.",
+  "model": "Mistral-7B-Instruct-v0.2 (4-bit quantized)",
+  "embedding_model": "BAAI/bge-large-en",
+  "dataset": "TeleQnA (10,000 entries)",
+  "test_set_size": 30
+}
