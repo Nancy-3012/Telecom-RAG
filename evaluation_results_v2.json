@@ -1,0 +1,10 @@
+{
+  "mrr": 1.0,
+  "top1_accuracy": 1.0,
+  "top3_accuracy": 1.0,
+  "top5_accuracy": 1.0,
+  "recall_at_5": 1.0,
+  "answer_accuracy": 1.0,
+  "num_samples": 20,
+  "methodology": "Queries are LLM-generated paraphrases of the original questions, not verbatim text -- avoids the exact-match leakage from the earlier evaluation."
+}

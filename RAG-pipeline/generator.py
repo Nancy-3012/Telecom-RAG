@@ -52,3 +52,8 @@ if __name__ == "__main__":
         result = answer_question(q)
         print(f"A: {result['answer']}")
         print(f"Sources: {result['sources']}")
+
+    # See llm_setup.py for why -- skips a known llama.cpp Metal cleanup bug
+    # that fires on exit, after all the real work above is already done.
+    import os
+    os._exit(0)

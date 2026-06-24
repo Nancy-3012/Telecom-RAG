@@ -1,62 +1,60 @@
-import torch
-from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
+import os
+from llama_cpp import Llama
+from huggingface_hub import hf_hub_download
 
-# Plain transformers + torch -- both already confirmed working on this machine.
-# Deliberately avoids llama-cpp-python (needs a working C++ compiler toolchain)
-# and bitsandbytes (CUDA-only, won't run on a Mac). Qwen2.5-3B is small enough
-# to run directly with no quantization library needed.
-MODEL_NAME = "Qwen/Qwen2.5-3B-Instruct"
+# GGUF quantized model -- roughly 2.5GB in memory, safe on 8GB RAM.
+# Qwen3-4B-Instruct-2507 specifically benchmarks well on open/closed-book QA
+# tasks and instruction-following (important for staying faithful to
+# retrieved context) -- a meaningful step up from the Qwen2.5 generation.
+MODEL_REPO = "bartowski/Qwen_Qwen3-4B-Instruct-2507-GGUF"
+MODEL_FILE = "Qwen_Qwen3-4B-Instruct-2507-Q4_K_M.gguf"
 
-_pipe = None
+_llm = None
 
 
 def load_llm():
-    global _pipe
-    if _pipe is not None:
-        return _pipe
+    global _llm
+    if _llm is not None:
+        return _llm
 
-    print(f"Loading tokenizer and model: {MODEL_NAME} (first run downloads ~6GB)...")
-    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
+    print(f"Downloading/loading {MODEL_FILE} (first run only, ~2GB)...")
+    model_path = hf_hub_download(repo_id=MODEL_REPO, filename=MODEL_FILE)
 
-    try:
-        model = AutoModelForCausalLM.from_pretrained(
-            MODEL_NAME, torch_dtype=torch.bfloat16, device_map="cpu"
-        )
-    except Exception:
-        print("bfloat16 not supported here, falling back to float32...")
-        model = AutoModelForCausalLM.from_pretrained(
-            MODEL_NAME, torch_dtype=torch.float32, device_map="cpu"
-        )
-
-    _pipe = pipeline(
-        "text-generation",
-        model=model,
-        tokenizer=tokenizer,
-        max_new_tokens=400,
-        temperature=0.3,
-        do_sample=True,
+    print("Loading model into memory...")
+    _llm = Llama(
+        model_path=model_path,
+        n_ctx=4096,
+        n_threads=os.cpu_count(),
+        n_gpu_layers=-1,  # uses Metal acceleration on Apple Silicon if available
+        verbose=False,
     )
     print("LLM ready.")
-    return _pipe
+    return _llm
 
 
 def generate(prompt, max_tokens=400, temperature=0.3):
     """
-    Formats the prompt using the model's own chat template (handled by the
-    tokenizer, so we don't have to guess the exact instruction format) and
-    generates a response.
+    Uses llama-cpp-python's chat completion, which reads the chat template
+    embedded in the GGUF file itself -- no need to hand-write Qwen's
+    instruction format.
     """
-    pipe = load_llm()
-    messages = [{"role": "user", "content": prompt}]
-    formatted = pipe.tokenizer.apply_chat_template(
-        messages, tokenize=False, add_generation_prompt=True
+    llm = load_llm()
+    output = llm.create_chat_completion(
+        messages=[{"role": "user", "content": prompt}],
+        max_tokens=max_tokens,
+        temperature=temperature,
     )
-
-    output = pipe(formatted, max_new_tokens=max_tokens, temperature=temperature, do_sample=True)
-    full_text = output[0]["generated_text"]
-    return full_text[len(formatted):].strip()
+    return output["choices"][0]["message"]["content"].strip()
 
 
 if __name__ == "__main__":
     response = generate("What is 5G NR handover? Answer in one sentence.")
     print("Response:", response)
+
+    # Skips Python's normal exit/cleanup path, which currently triggers a
+    # known upstream bug in llama.cpp's Metal backend teardown (crashes
+    # AFTER the real work above is already done and printed). Not needed
+    # once this is imported into a long-running server instead of run
+    # standalone like this.
+    import os
+    os._exit(0)

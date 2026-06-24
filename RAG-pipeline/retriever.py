@@ -1,4 +1,3 @@
-
 import os
 import json
 import faiss
@@ -35,7 +34,7 @@ def _load_resources():
 def retrieve_chunks(query: str, k: int = 5) -> list:
     """
     Given a question, returns the top-k most relevant TeleQnA entries.
-    Each result: {"text": ..., "source": ..., "score": ...}
+    Each result: {"id": ..., "text": ..., "source": ..., "score": ...}
     """
     _load_resources()
 
@@ -49,6 +48,8 @@ def retrieve_chunks(query: str, k: int = 5) -> list:
             continue
         entry = _metadata[idx]
         results.append({
+            "id": entry["id"],            # needed so callers (e.g. evaluate.py)
+                                           # can check which exact entry came back
             "text": entry["text"],
             "source": entry["source"],
             "score": float(dist)   # lower = more similar (L2 distance)
