@@ -1,10 +1,458 @@
 {
-  "mrr": 1.0,
-  "top1_accuracy": 1.0,
-  "top3_accuracy": 1.0,
-  "top5_accuracy": 1.0,
-  "recall_at_5": 1.0,
-  "answer_accuracy": 1.0,
-  "num_samples": 20,
-  "methodology": "Queries are LLM-generated paraphrases of the original questions, not verbatim text -- avoids the exact-match leakage from the earlier evaluation."
+  "completed": [
+    "question 1824",
+    "question 409",
+    "question 4506",
+    "question 4012",
+    "question 3657",
+    "question 2286",
+    "question 1679",
+    "question 8935",
+    "question 1424",
+    "question 9674",
+    "question 6912",
+    "question 520",
+    "question 488",
+    "question 1535",
+    "question 3582",
+    "question 3811",
+    "question 8279",
+    "question 9863",
+    "question 434",
+    "question 9195",
+    "question 3257",
+    "question 8928",
+    "question 6873",
+    "question 3611",
+    "question 7359",
+    "question 9654",
+    "question 4557",
+    "question 106",
+    "question 2615",
+    "question 6924",
+    "question 5574",
+    "question 4552",
+    "question 2547",
+    "question 3527",
+    "question 5514",
+    "question 1674",
+    "question 1519",
+    "question 6224",
+    "question 1584",
+    "question 5881",
+    "question 5635",
+    "question 9891",
+    "question 4333",
+    "question 711",
+    "question 7527",
+    "question 8785",
+    "question 2045",
+    "question 6201",
+    "question 1291",
+    "question 9044"
+  ],
+  "easy": [
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    }
+  ],
+  "hard": [
+    {
+      "rank": null,
+      "correct": false
+    },
+    {
+      "rank": 7,
+      "correct": true
+    },
+    {
+      "rank": 4,
+      "correct": true
+    },
+    {
+      "rank": null,
+      "correct": true
+    },
+    {
+      "rank": null,
+      "correct": true
+    },
+    {
+      "rank": null,
+      "correct": false
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 3,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": null,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 10,
+      "correct": false
+    },
+    {
+      "rank": 5,
+      "correct": true
+    },
+    {
+      "rank": null,
+      "correct": true
+    },
+    {
+      "rank": 4,
+      "correct": true
+    },
+    {
+      "rank": null,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 5,
+      "correct": true
+    },
+    {
+      "rank": 2,
+      "correct": true
+    },
+    {
+      "rank": null,
+      "correct": false
+    },
+    {
+      "rank": 3,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 4,
+      "correct": true
+    },
+    {
+      "rank": null,
+      "correct": true
+    },
+    {
+      "rank": 8,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": null,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": null,
+      "correct": false
+    },
+    {
+      "rank": null,
+      "correct": true
+    },
+    {
+      "rank": 8,
+      "correct": true
+    },
+    {
+      "rank": null,
+      "correct": false
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": null,
+      "correct": true
+    },
+    {
+      "rank": null,
+      "correct": true
+    },
+    {
+      "rank": null,
+      "correct": false
+    },
+    {
+      "rank": null,
+      "correct": true
+    },
+    {
+      "rank": null,
+      "correct": true
+    },
+    {
+      "rank": 3,
+      "correct": true
+    },
+    {
+      "rank": 2,
+      "correct": true
+    },
+    {
+      "rank": 1,
+      "correct": true
+    },
+    {
+      "rank": null,
+      "correct": true
+    },
+    {
+      "rank": 2,
+      "correct": true
+    },
+    {
+      "rank": 6,
+      "correct": true
+    },
+    {
+      "rank": null,
+      "correct": true
+    }
+  ]
 }
